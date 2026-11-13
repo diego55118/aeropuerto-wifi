@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AEROPUERTO MÉXICO - WiFi Gratis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  body, html {
+    margin:0; padding:0; height:100%;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #004080 0%, #a3c2ff 100%);
+    color: #003366;
+    display:flex;
+    flex-direction: column; 
+    min-height: 100vh;
+  }
+  header {
+    background:#001f3f;
+    color:white;
+    text-align:center;
+    padding: 1rem 1rem 1.5rem;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+  header .logo {
+    font-size: 3.5rem;
+    margin-bottom: 0.3rem;
+    user-select:none;
+  }
+  header h1 {
+    margin:0 0 0.25rem 0;
+    font-weight: 700;
+    letter-spacing: 3px;
+    font-size: 2rem;
+  }
+  header .wifi-info {
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+  }
+  header .simulacion {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 0.85rem;
+    background: #003366cc;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-weight: 700;
+    user-select:none;
+  }
+  main {
+    flex:1;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+  .card {
+    background: white;
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 8px 20px #001f3faa;
+    max-width: 420px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  h2 {
+    margin-top:0;
+    margin-bottom:1.2rem;
+    color: #002244;
+    font-size: 1.9rem;
+  }
+  .btn-group {
+    display:flex;
+    justify-content:center;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  button {
+    background-color: #003366;
+    border: none;
+    color: white;
+    padding: 0.85rem 1.5rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    flex:1;
+    font-size: 1.1rem;
+    transition: background-color 0.25s ease;
+    user-select:none;
+  }
+  button:hover {
+    background-color: #0056b3;
+  }
+  button.light {
+    background-color: #A3C2FF;
+    color: #003366;
+  }
+  button.light:hover {
+    background-color: #7aaaff;
+  }
+  input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.1rem;
+    border: 2px solid #003366;
+    border-radius: 8px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+  }
+  input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="password"]:focus {
+    border-color: #0066ff;
+    outline: none;
+    box-shadow: 0 0 6px #66aaff;
+  }
+  .timer {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #004080;
+    margin-bottom: 1.5rem;
+    user-select:none;
+  }
+  .progress-bar-container {
+    background: #a3c2ff;
+    border-radius: 12px;
+    width: 100%;
+    height: 24px;
+    margin: 1.5rem 0 1rem;
+    overflow: hidden;
+    box-shadow: inset 0 0 8px #001f3faa;
+  }
+  .progress-bar {
+    height: 100%;
+    background: #003366;
+    width: 0%;
+    transition: width 1s linear;
+  }
+  footer {
+    background:#001f3f;
+    color:white;
+    font-size:0.85rem;
+    text-align:center;
+    padding:0.75rem 1rem;
+    user-select:none;
+  }
+  .social-icons {
+    margin-top: 0.3rem;
+  }
+  .social-icons span {
+    margin: 0 0.5rem;
+    cursor: pointer;
+    font-size: 1.7rem;
+    color: #a3c2ff;
+    user-select:none;
+  }
+  /* Responsive */
+  @media (max-width: 480px) {
+    .card {
+      max-width: 95%;
+      padding: 2rem 1.25rem;
+    }
+    h2 {
+      font-size: 1.6rem;
+    }
+    button {
+      font-size: 1rem;
+      padding: 0.7rem 1rem;
+    }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
+      font-size: 1rem;
+      padding: 0.6rem;
+    }
+  }
+  /* Vulnerable: raw HTML display style */
+  .danger-html {
+    color: #cc0000;
+    border: 2px solid #cc0000;
+    padding: 0.75rem;
+    margin: 0.75rem 0 0 0;
+    background: #ffe6e6;
+    font-family: monospace;
+    text-align: left;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    user-select:none;
+  }
+  /* Modal admin */
+  .modal {
+    display: none;
+    position: fixed; top: 0; left: 0; right:0; bottom:0;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  .modal.active {
+    display:flex;
+  }
+  .modal-content {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    max-width: 520px;
+    width: 90%;
+    box-sizing: border-box;
+    box-shadow: 0 0 25px #003366aa;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.2rem;
+    font-size: 1rem;
+    color: #003366;
+    user-select:none;
+  }
+  th, td {
+    border: 1.5px solid #004080;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  th {
+    background: #003366;
+    color: white;
+  }
+  .btn-close {
+    background: #cc2200;
+    color: white;
+    border:none;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    transition: background-color 0.3s;
+  }
+  .btn-close:hover {
+    background: #aa0011;
+  }
+  .btn-admin {
+    box-shadow: 0 3px 6px #00000088;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">✈️</div>
+  <h1>AEROPUERTO MÉXICO</h1>
+  <div class="wifi-info">WiFi Gratis - ¡Conéctate ya!</div>
+  <div class="simulacion" title="Propósito educativo">SIMULACIÓN EDUCATIVA</div>
+</header>
+
+<main>
+  <div class="card" id="card-main">
+    <h2>Acceso a Internet</h2>
+    <div class="btn-group">
+      <button id="btn-phone" class="btn-admin">Acceder con código</button>
+      <button id="btn-email" class="light btn-admin">Acceder con correo electrónico</button>
+    </div>
+  </div>
+  <div class="card" id="card-phone" style="display:none;">
+    <h2>Verificación telefónica</h2>
+    <form id="form-phone" autocomplete="off">
+      <input type="tel" id="input-phone" placeholder="Ingresa tu número de teléfono" required />
+      <button type="submit" class="btn-admin">Continuar</button>
+      <button type="button" id="back-phone" class="light btn-admin">Regresar</button>
+    </form>
+  </div>
+  <div class="card" id="card-email" style="display:none;">
+    <h2>Verificación de correo electrónico</h2>
+    <form id="form-email" autocomplete="off">
+      <input type="email" id="input-email" placeholder="Ingresa tu correo electrónico" required />
+      <button type="submit" class="btn-admin">Continuar</button>
+      <button type="button" id="back-email" class="light btn-admin">Regresar</button>
+    </form>
+  </div>
+  <div class="card" id="card-code" style="display:none;">
+    <h2>Confirmación de acceso</h2>
+    <p>Ingresa el código de verificación de prueba.</p>
+    <form id="form-code" autocomplete="off">
+      <input type="text" id="input-code" maxlength="100" placeholder="Código de 6 dígitos (puede incluir HTML/JS)" required />
+      <div class="timer" id="timer-code">El código de prueba caducará en 05:00 minutos.</div>
+      <button type="submit" class="btn-admin">Confirmar código</button>
+      <button type="button" id="cancel-code" class="light btn-admin">Cancelar</button>
+    </form>
+    <div style="margin-top:1rem; color:#800; font-size:0.9rem;">
+      <b>Vulnerabilidad XSS:</b> Puedes inyectar código HTML/script en el código de verificación y se ejecutará.
+    </div>
+    <div id="injected-code" class="danger-html"></div>
+  </div>
+  <div class="card" id="card-connect" style="display:none; text-align:center;">
+    <div style="font-size:5rem; color:#003366; user-select:none;">🔌</div>
+    <h2>Verificación completada</h2>
+    <p>Estamos preparando tu conexión</p>
+    <div class="progress-bar-container" aria-label="Barra de progreso">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="timer" id="timer-connect">Tu conexión estará disponible en unos momentos.</div>
+  </div>
+</main>
+
+<footer>
+  <div>© 2026 Aeropuerto México - Portal simulado</div>
+  <div class="social-icons" role="list" title="Redes sociales">
+    <span role="listitem" title="Facebook" onclick="alert('Ir a Facebook')">📘</span>
+    <span role="listitem" title="Instagram" onclick="alert('Ir a Instagram')">📸</span>
+    <span role="listitem" title="X (Twitter)" onclick="alert('Ir a X')">🐦</span>
+    <span role="listitem" title="YouTube" onclick="alert('Ir a YouTube')">▶️</span>
+  </div>
+</footer>
+
+<!-- Botón admin fijo -->
+<button id="btn-admin" class="btn-admin" style="position: fixed; bottom: 1rem; right: 1rem;">Admin</button>
+
+<!-- Modal panel admin -->
+<div id="modal-admin" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-content">
+    <h2 id="modal-title">Panel Administrativo</h2>
+    <div id="admin-login-section">
+      <p>Ingresa la contraseña para acceder:</p>
+      <input type="password" id="admin-password" placeholder="Contraseña" autocomplete="off"/>
+      <button id="admin-login-btn" style="margin-top: 0.5rem;">Entrar</button>
+    </div>
+    <div id="admin-panel-section" style="display:none;">
+      <button id="admin-logout-btn" class="btn-close">Cerrar sesión</button>
+      <button id="export-csv-btn" style="background:#004080; color:#fff; border:none; cursor:pointer; padding: 0.5rem 1rem; margin-bottom:1rem; border-radius:8px;">Exportar sesiones a CSV</button>
+      <div id="admin-session-count" style="font-weight:700; margin-bottom:0.5rem;"></div>
+      <table id="admin-table" aria-label="Sesiones ingresadas">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Método</th>
+            <th>Identificador</th>
+            <th>Código</th>
+            <th>Verificado</th>
+            <th>Creado</th>
+            <th>Expirado</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  (() => {
+    // Elementos
+    const cardMain = document.getElementById('card-main');
+    const cardPhone = document.getElementById('card-phone');
+    const cardEmail = document.getElementById('card-email');
+    const cardCode = document.getElementById('card-code');
+    const cardConnect = document.getElementById('card-connect');
+
+    const btnPhone = document.getElementById('btn-phone');
+    const btnEmail = document.getElementById('btn-email');
+
+    const backPhone = document.getElementById('back-phone');
+    const backEmail = document.getElementById('back-email');
+    const cancelCode = document.getElementById('cancel-code');
+
+    const formPhone = document.getElementById('form-phone');
+    const inputPhone = document.getElementById('input-phone');
+
+    const formEmail = document.getElementById('form-email');
+    const inputEmail = document.getElementById('input-email');
+
+    const formCode = document.getElementById('form-code');
+    const inputCode = document.getElementById('input-code');
+    const timerCode = document.getElementById('timer-code');
+    const injectedCode = document.getElementById('injected-code');
+
+    const progressBar = document.getElementById('progress-bar');
+    const timerConnect = document.getElementById('timer-connect');
+
+    const btnAdmin = document.getElementById('btn-admin');
+    const modalAdmin = document.getElementById('modal-admin');
+    const adminPasswordInput = document.getElementById('admin-password');
+    const adminLoginBtn = document.getElementById('admin-login-btn');
+    const adminLoginSection = document.getElementById('admin-login-section');
+    const adminPanelSection = document.getElementById('admin-panel-section');
+    const adminTableBody = document.querySelector('#admin-table tbody');
+    const adminLogoutBtn = document.getElementById('admin-logout-btn');
+    const exportCsvBtn = document.getElementById('export-csv-btn');
+    const sessionCountDiv = document.getElementById('admin-session-count');
+
+    // Variables
+    let currentSession = null;
+    let codeExpireCount = null;
+    let connectTimer = null;
+
+    const adminPass = "admin123";
+
+    // Funciones
+    function showCard(card) {
+      [cardMain, cardPhone, cardEmail, cardCode, cardConnect].forEach(c => c.style.display='none');
+      card.style.display = 'block';
+    }
+
+    function resetToMain() {
+      currentSession = null;
+      injectedCode.innerHTML = '';
+      inputCode.value = '';
+      inputEmail.value = '';
+      inputPhone.value = '';
+      showCard(cardMain);
+    }
+
+    function generateId() {
+      return 'sess_' + Math.random().toString(36).substr(2,9);
+    }
+
+    function saveSession(session) {
+      let sesiones = JSON.parse(localStorage.getItem('sesionesAeropuerto')) || [];
+      const idx = sesiones.findIndex(s => s.id === session.id);
+      if (idx !== -1) sesiones[idx] = session;
+      else sesiones.push(session);
+      localStorage.setItem('sesionesAeropuerto', JSON.stringify(sesiones));
+    }
+
+    function readSessions() {
+      return JSON.parse(localStorage.getItem('sesionesAeropuerto')) || [];
+    }
+
+    function startCodeTimer() {
+      let timeLeft = 300;
+      timerCode.textContent = `El código de prueba caducará en 05:00 minutos.`;
+      clearInterval(codeExpireCount);
+      codeExpireCount = setInterval(() => {
+        timeLeft--;
+        const m = Math.floor(timeLeft/60).toString().padStart(2,'0');
+        const s = (timeLeft%60).toString().padStart(2,'0');
+        timerCode.textContent = `El código de prueba caducará en ${m}:${s} minutos.`;
+        if(timeLeft<=0){
+          clearInterval(codeExpireCount);
+          timerCode.textContent = 'El código ha caducado.';
+          if(currentSession){
+            currentSession.expired = true;
+            saveSession(currentSession);
+            alert('El código de verificación expiró. Debes reiniciar el acceso.');
+            resetToMain();
+          }
+        }
+      },1000);
+    }
+
+    function startConnectTimer() {
+      let progress = 0;
+      let timeLeft = 120;
+      progressBar.style.width = '0%';
+      timerConnect.textContent = 'Tu conexión estará disponible en unos momentos.';
+      clearInterval(connectTimer);
+      connectTimer = setInterval(() => {
+        progress++;
+        progressBar.style.width = `${progress/120*100}%`;
+        const m = Math.floor(timeLeft/60).toString().padStart(2,'0');
+        const s = (timeLeft%60).toString().padStart(2,'0');
+        timerConnect.textContent = `Tiempo restante: ${m}:${s}`;
+        timeLeft--;
+        if(timeLeft<0){
+          clearInterval(connectTimer);
+          timerConnect.textContent = '¡Conexión de demostración completada!\n(No se estableció conexión real)';
+          setTimeout(resetToMain, 3000);
+        }
+      },1000);
+    }
+
+    function showInjectedCode(code) {
+      // Intencionalmente insertamos html sin escapar para XSS
+      injectedCode.innerHTML = code;
+    }
+
+    btnPhone.addEventListener('click', () => showCard(cardPhone));
+    btnEmail.addEventListener('click', () => showCard(cardEmail));
+    backPhone.addEventListener('click', resetToMain);
+    backEmail.addEventListener('click', resetToMain);
+    cancelCode.addEventListener('click', resetToMain);
+
+    formPhone.addEventListener('submit', e => {
+      e.preventDefault();
+      const phoneVal = inputPhone.value.trim();
+      if(phoneVal.length < 7){
+        alert('Número telefónico inválido');
+        return;
+      }
+      currentSession = {
+        id: generateId(),
+        method: 'phone',
+        identifier: phoneVal,
+        verified: false,
+        expired: false,
+        createdAt: new Date().toISOString()
+      };
+      saveSession(currentSession);
+      showCard(cardCode);
+      startCodeTimer();
+    });
+
+    formEmail.addEventListener('submit', e => {
+      e.preventDefault();
+      const emailVal = inputEmail.value.trim();
+      if(!emailVal.includes('@')){
+        alert('Correo inválido');
+        return;
+      }
+      currentSession = {
+        id: generateId(),
+        method: 'email',
+        identifier: emailVal,
+        verified: false,
+        expired: false,
+        createdAt: new Date().toISOString()
+      };
+      saveSession(currentSession);
+      showCard(cardCode);
+      startCodeTimer();
+    });
+
+    formCode.addEventListener('submit', e => {
+      e.preventDefault();
+      if(!currentSession){
+        alert('Sesión inválida. Reinicia el acceso.');
+        resetToMain();
+        return;
+      }
+      const codeVal = inputCode.value.trim();
+      if(codeVal.length === 0){
+        alert('Ingresa un código válido');
+        return;
+      }
+      currentSession.code = codeVal;
+      currentSession.verified = true;
+      saveSession(currentSession);
+      clearInterval(codeExpireCount);
+
+      showInjectedCode(codeVal);
+
+      showCard(cardConnect);
+      startConnectTimer();
+    });
+
+    // Panel admin modal
+    btnAdmin.addEventListener('click', () => {
+      adminPasswordInput.value = '';
+      adminLoginSection.style.display = 'block';
+      adminPanelSection.style.display = 'none';
+      modalAdmin.classList.add('active');
+      adminPasswordInput.focus();
+    });
+
+    adminLoginBtn.addEventListener('click', () => {
+      const pass = adminPasswordInput.value;
+      if(pass === adminPass){
+        adminLoginSection.style.display = 'none';
+        adminPanelSection.style.display = 'block';
+        loadAdminSessions();
+      } else {
+        alert('Contraseña incorrecta.');
+        adminPasswordInput.focus();
+      }
+    });
+
+    adminLogoutBtn.addEventListener('click', () => {
+      modalAdmin.classList.remove('active');
+    });
+
+    function loadAdminSessions(){
+      const sesiones = readSessions();
+      adminTableBody.innerHTML = '';
+      sesiones.forEach(s => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${s.id}</td>
+          <td>${s.method}</td>
+          <td>${escapeHtml(s.identifier)}</td>
+          <td>${escapeHtml(s.code || '')}</td>
+          <td>${s.verified ? 'Sí' : 'No'}</td>
+          <td>${new Date(s.createdAt).toLocaleString()}</td>
+          <td>${s.expired ? 'Sí' : 'No'}</td>
+        `;
+        adminTableBody.appendChild(tr);
+      });
+      sessionCountDiv.textContent = `Total sesiones: ${sesiones.length}`;
+    }
+
+    exportCsvBtn.addEventListener('click', () => {
+      const sesiones = readSessions();
+      const header = ['ID','Método','Identificador','Código','Verificado','Creado','Expirado'];
+      const rows = sesiones.map(s => [
+        s.id,
+        s.method,
+        s.identifier,
+        s.code || '',
+        s.verified,
+        s.createdAt,
+        s.expired
+      ]);
+      let csv = header.join(',') + '\n';
+      rows.forEach(row => {
+        csv += row.map(escapeCsv).join(',') + '\n';
+      });
+      downloadCSV(csv, 'sesiones_aeropuerto_mexico.csv');
+    });
+
+    function downloadCSV(data, filename) {
+      const blob = new Blob([data], {type: 'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function escapeCsv(text){
+      if (typeof text !== 'string') return text;
+      return `"${text.replace(/"/g, '""')}"`;
+    }
+
+    function escapeHtml(unsafe) {
+      return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+    }
+
+    modalAdmin.addEventListener('click', e => {
+      if(e.target === modalAdmin) modalAdmin.classList.remove('active');
+    });
+
+    showCard(cardMain);
+  })();
+</script>
+
+</body>
+</html>
