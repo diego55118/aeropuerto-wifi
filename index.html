@@ -37,312 +37,140 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     position: relative;
   }
-  .header-brand {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
+  .header-brand { display: flex; align-items: center; gap: 1rem; }
   .header-brand .logo {
-    font-size: 2.2rem;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    width: 56px; height: 56px;
+    font-size: 2.2rem; background: rgba(255,255,255,0.1);
+    border-radius: 50%; width: 56px; height: 56px;
     display: flex; align-items: center; justify-content: center;
     border: 2px solid rgba(255,255,255,0.2);
   }
-  .header-brand h1 {
-    margin: 0;
-    font-weight: 800;
-    letter-spacing: 2px;
-    font-size: 1.4rem;
-  }
-  .header-brand .sub {
-    font-size: 0.7rem;
-    color: var(--azul-claro);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-top: 2px;
-    font-weight: 600;
-  }
-  .header-nav {
-    display: flex;
-    gap: 1.5rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-  .header-nav a {
-    color: var(--azul-claro);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
+  .header-brand h1 { margin: 0; font-weight: 800; letter-spacing: 2px; font-size: 1.4rem; }
+  .header-brand .sub { font-size: 0.7rem; color: var(--azul-claro); letter-spacing: 3px; text-transform: uppercase; margin-top: 2px; font-weight: 600; }
+  .header-nav { display: flex; gap: 1.5rem; font-size: 0.85rem; font-weight: 600; }
+  .header-nav a { color: var(--azul-claro); text-decoration: none; transition: color 0.2s; }
   .header-nav a:hover { color: var(--blanco); }
   
   .simulacion {
-    position: absolute;
-    top: 8px; right: 12px;
-    font-size: 0.6rem;
-    background: #ff6b00;
-    color: white;
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 4px rgba(255,107,0,0.4);
+    position: absolute; top: 8px; right: 12px;
+    font-size: 0.6rem; background: #ff6b00; color: white;
+    padding: 3px 8px; border-radius: 12px; font-weight: 800;
+    letter-spacing: 1px; box-shadow: 0 2px 4px rgba(255,107,0,0.4);
   }
 
   /* ================== MAIN Y HERO ================== */
-  main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
-  }
+  main { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 2rem 1rem; }
 
   .hero {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%; max-width: 1000px; margin: 0 auto 3rem;
+    display: flex; align-items: center; justify-content: space-between;
     background: linear-gradient(135deg, #e6f0ff, #cce0ff);
-    border-radius: 24px;
-    padding: 2.5rem;
+    border-radius: 24px; padding: 2.5rem;
     box-shadow: 0 10px 30px rgba(0,51,102,0.08);
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
   }
   .hero-text { max-width: 55%; z-index: 1; }
-  .hero-text h2 {
-    font-size: 2.2rem;
-    margin: 0 0 1rem;
-    color: var(--azul-primario);
-    line-height: 1.2;
-    font-weight: 800;
-  }
-  .hero-text p {
-    color: #557;
-    font-size: 1rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-  }
-  .hero-features {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+  .hero-text h2 { font-size: 2.2rem; margin: 0 0 1rem; color: var(--azul-primario); line-height: 1.2; font-weight: 800; }
+  .hero-text p { color: #557; font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem; }
+  .hero-features { display: flex; gap: 1rem; flex-wrap: wrap; }
   .hero-features .feat {
-    background: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--azul-primario);
+    background: white; padding: 0.5rem 1rem; border-radius: 20px;
+    font-size: 0.85rem; font-weight: 600; color: var(--azul-primario);
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   }
   .hero-image {
-    width: 40%;
-    height: 200px;
+    width: 40%; height: 200px;
     background: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80') center/cover;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    position: relative;
+    border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); position: relative;
   }
   .hero-image::after {
-    content: '';
-    position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0;
     background: linear-gradient(to right, rgba(0,34,68,0.4), transparent);
     border-radius: 16px;
   }
 
   /* ================== TARJETAS ================== */
   .card {
-    background: var(--blanco);
-    border-radius: 20px;
-    padding: 2.5rem 2rem;
-    box-shadow: 0 12px 32px rgba(0,51,102,0.1);
-    max-width: 440px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    border-top: 6px solid var(--azul-primario);
-    margin-bottom: 2rem;
+    background: var(--blanco); border-radius: 20px; padding: 2.5rem 2rem;
+    box-shadow: 0 12px 32px rgba(0,51,102,0.1); max-width: 440px;
+    width: 100%; box-sizing: border-box; text-align: center;
+    border-top: 6px solid var(--azul-primario); margin-bottom: 2rem;
     animation: fadeIn 0.4s ease;
   }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  h2 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: var(--azul-marino);
-    font-size: 1.7rem;
-    font-weight: 800;
-  }
-  
-  .btn-group {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  h2 { margin-top: 0; margin-bottom: 1rem; color: var(--azul-marino); font-size: 1.7rem; font-weight: 800; }
+  .btn-group { display: flex; flex-direction: column; gap: 1rem; }
 
   button {
-    background-color: var(--azul-primario);
-    border: none;
-    color: white;
-    padding: 1rem 1.5rem;
-    font-weight: 700;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-    font-family: inherit;
-    box-shadow: 0 4px 10px rgba(0,51,102,0.2);
+    background-color: var(--azul-primario); border: none; color: white;
+    padding: 1rem 1.5rem; font-weight: 700; border-radius: 10px;
+    cursor: pointer; font-size: 1rem; transition: all 0.2s ease;
+    font-family: inherit; box-shadow: 0 4px 10px rgba(0,51,102,0.2);
   }
-  button:hover {
-    background-color: var(--azul-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 15px rgba(0,51,102,0.3);
-  }
-  button.light {
-    background-color: var(--azul-claro);
-    color: var(--azul-primario);
-  }
-  button.light:hover {
-    background-color: #7aaaff;
-  }
+  button:hover { background-color: var(--azul-hover); transform: translateY(-1px); box-shadow: 0 6px 15px rgba(0,51,102,0.3); }
+  button.light { background-color: var(--azul-claro); color: var(--azul-primario); }
+  button.light:hover { background-color: #7aaaff; }
 
-  input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 1.2rem;
-    font-size: 1rem;
-    border: 2px solid #d0dbe8;
-    border-radius: 10px;
-    box-sizing: border-box;
-    transition: all 0.3s;
-    font-family: inherit;
-    background: #f9fbff;
+  input {
+    width: 100%; padding: 1rem; margin-bottom: 1.2rem; font-size: 1rem;
+    border: 2px solid #d0dbe8; border-radius: 10px; box-sizing: border-box;
+    transition: all 0.3s; font-family: inherit; background: #f9fbff;
   }
-  input:focus {
-    border-color: var(--azul-primario);
-    outline: none;
-    background: white;
-    box-shadow: 0 0 0 4px rgba(0,102,204,0.1);
-  }
+  input:focus { border-color: var(--azul-primario); outline: none; background: white; box-shadow: 0 0 0 4px rgba(0,102,204,0.1); }
 
   .timer {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #d32f2f;
-    margin-bottom: 1.5rem;
-    background: #fff5f5;
-    padding: 0.8rem;
-    border-radius: 8px;
-    border: 1px solid #ffcdd2;
+    font-size: 1rem; font-weight: 700; color: #d32f2f; margin-bottom: 1.5rem;
+    background: #fff5f5; padding: 0.8rem; border-radius: 8px; border: 1px solid #ffcdd2;
   }
 
   .progress-bar-container {
-    background: #e6f0ff;
-    border-radius: 12px;
-    width: 100%;
-    height: 24px;
-    margin: 1.5rem 0;
-    overflow: hidden;
-    border: 1px solid #cce0ff;
+    background: #e6f0ff; border-radius: 12px; width: 100%; height: 24px;
+    margin: 1.5rem 0; overflow: hidden; border: 1px solid #cce0ff;
   }
   .progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--azul-primario), #00b4d8);
-    width: 0%;
-    transition: width 1s linear;
+    height: 100%; background: linear-gradient(90deg, var(--azul-primario), #00b4d8);
+    width: 0%; transition: width 1s linear;
   }
 
   /* ================== FOOTER ================== */
   footer {
-    background: var(--azul-marino);
-    color: var(--azul-claro);
-    font-size: 0.8rem;
-    text-align: center;
-    padding: 2rem 1rem;
-    margin-top: auto;
+    background: var(--azul-marino); color: var(--azul-claro); font-size: 0.8rem;
+    text-align: center; padding: 2rem 1rem; margin-top: auto;
   }
   .footer-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    text-align: left;
-    margin-bottom: 2rem;
+    max-width: 1000px; margin: 0 auto; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 2rem; text-align: left; margin-bottom: 2rem;
   }
   .footer-content h4 { color: white; margin: 0 0 0.5rem; font-size: 1rem; }
   .social-icons { margin-top: 1rem; }
-  .social-icons span {
-    margin: 0 0.5rem;
-    cursor: pointer;
-    font-size: 1.5rem;
-    transition: transform 0.2s;
-    display: inline-block;
-  }
+  .social-icons span { margin: 0 0.5rem; cursor: pointer; font-size: 1.5rem; transition: transform 0.2s; display: inline-block; }
   .social-icons span:hover { transform: scale(1.2); }
 
   /* ================== VULNERABILIDADES UI ================== */
   .danger-html {
-    color: #cc0000;
-    border: 1px dashed #cc0000;
-    padding: 1rem;
-    margin: 1rem 0 0 0;
-    background: #fff0f0;
-    font-family: monospace;
-    text-align: left;
-    overflow-wrap: break-word;
-    word-break: break-all;
+    color: #cc0000; border: 1px dashed #cc0000; padding: 1rem;
+    margin: 1rem 0 0 0; background: #fff0f0; font-family: monospace;
+    text-align: left; overflow-wrap: break-word; word-break: break-all;
   }
 
   /* Modal admin */
   .modal {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,20,40,0.7);
-    backdrop-filter: blur(4px);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+    display: none; position: fixed; inset: 0; background: rgba(0,20,40,0.7);
+    backdrop-filter: blur(4px); justify-content: center; align-items: center; z-index: 9999;
   }
   .modal.active { display: flex; }
   .modal-content {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem;
-    max-width: 800px;
-    width: 95%;
-    max-height: 90vh;
-    overflow-y: auto;
+    background: white; border-radius: 16px; padding: 2rem;
+    max-width: 900px; width: 95%; max-height: 90vh; overflow-y: auto;
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
   }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1rem;
-    font-size: 0.85rem;
-  }
-  th, td {
-    border: 1px solid #d0dbe8;
-    padding: 0.6rem;
-    text-align: left;
-  }
+  table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.85rem; }
+  th, td { border: 1px solid #d0dbe8; padding: 0.6rem; text-align: left; }
   th { background: var(--azul-primario); color: white; }
   .btn-close { background: #d32f2f; margin-bottom: 1rem; }
   .btn-admin {
-    position: fixed; bottom: 1.5rem; right: 1.5rem;
-    width: 60px; height: 60px; border-radius: 50%;
-    padding: 0; display: flex; justify-content: center; align-items: center;
-    font-size: 1.5rem; box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-    z-index: 100;
+    position: fixed; bottom: 1.5rem; right: 1.5rem; width: 60px; height: 60px;
+    border-radius: 50%; padding: 0; display: flex; justify-content: center; align-items: center;
+    font-size: 1.5rem; box-shadow: 0 6px 15px rgba(0,0,0,0.3); z-index: 100;
   }
 
   /* Responsive */
@@ -377,7 +205,6 @@
 </header>
 
 <main>
-  <!-- Hero section para que se vea "Pro" -->
   <section class="hero" id="hero-section">
     <div class="hero-text">
       <h2>Bienvenido al Aeropuerto México</h2>
@@ -400,34 +227,35 @@
     </div>
   </div>
 
+  <!-- CAMBIADO A DIV Y TYPE=TEXT PARA EVITAR VALIDACION DEL NAVEGADOR -->
   <div class="card" id="card-phone" style="display:none;">
     <h2>Verificación telefónica</h2>
-    <form id="form-phone" autocomplete="off">
-      <input type="tel" id="input-phone" placeholder="Ingresa tu número de teléfono" required />
-      <button type="submit">Continuar</button>
+    <div id="form-phone">
+      <input type="text" id="input-phone" placeholder="Ingresa tu número de teléfono" />
+      <button id="btn-submit-phone">Continuar</button>
       <button type="button" id="back-phone" class="light" style="margin-top:0.5rem;">Regresar</button>
-    </form>
+    </div>
   </div>
 
+  <!-- CAMBIADO A DIV Y TYPE=TEXT PARA EVITAR VALIDACION DEL NAVEGADOR -->
   <div class="card" id="card-email" style="display:none;">
     <h2>Verificación de correo</h2>
-    <form id="form-email" autocomplete="off">
-      <input type="email" id="input-email" placeholder="Ingresa tu correo electrónico" required />
-      <button type="submit">Continuar</button>
+    <div id="form-email">
+      <input type="text" id="input-email" placeholder="Ingresa tu correo electrónico" />
+      <button id="btn-submit-email">Continuar</button>
       <button type="button" id="back-email" class="light" style="margin-top:0.5rem;">Regresar</button>
-    </form>
+    </div>
   </div>
 
   <div class="card" id="card-code" style="display:none;">
     <h2>Confirmación de acceso</h2>
     <p style="color:#557; margin-bottom:1rem;">Ingresa el código de verificación de 6 dígitos</p>
-    <form id="form-code" autocomplete="off">
-      <input type="text" id="input-code" maxlength="100" placeholder="000000" required style="text-align:center; letter-spacing:5px; font-size:1.4rem; font-weight:700;" />
+    <div id="form-code">
+      <input type="text" id="input-code" maxlength="100" placeholder="000000" style="text-align:center; letter-spacing:5px; font-size:1.4rem; font-weight:700;" />
       <div class="timer" id="timer-code">El código de prueba caducará en 05:00 minutos.</div>
-      <button type="submit">Confirmar código</button>
+      <button id="btn-submit-code">Confirmar código</button>
       <button type="button" id="cancel-code" class="light" style="margin-top:0.5rem;">Cancelar</button>
-    </form>
-    <!-- Zona vulnerable XSS -->
+    </div>
     <div id="injected-code" class="danger-html" style="display:none;"></div>
   </div>
 
@@ -464,10 +292,8 @@
   </div>
 </footer>
 
-<!-- Botón admin fijo -->
 <button id="btn-admin" class="btn-admin" title="Panel Admin">⚙️</button>
 
-<!-- Modal panel admin -->
 <div id="modal-admin" class="modal" role="dialog" aria-modal="true">
   <div class="modal-content">
     <h2 id="modal-title">Panel Administrativo</h2>
@@ -484,6 +310,10 @@
         <button id="admin-logout-btn" class="btn-close" style="margin:0; flex:1;">Cerrar sesión</button>
         <button id="export-csv-btn" style="margin:0; flex:1; background:#004080;">Exportar CSV</button>
       </div>
+      
+      <!-- FLAG OCULTA 2 EN HTML -->
+      <input type="hidden" id="hidden-flag" value="RkxBR3tsb2NhbHN0b3JhZ2VfZXNfcHVibGljb30=">
+
       <div id="admin-session-count" style="font-weight:700; margin-bottom:0.5rem;"></div>
       
       <div style="background:#fff3cd; padding:0.8rem; border-radius:8px; font-size:0.8rem; margin-bottom:1rem; border:1px solid #ffc107;">
@@ -522,15 +352,14 @@
     // [V6] window global expuesto: funciones internas accesibles desde consola.
     // ============================================================
 
-    // [V2] Contraseña hardcodeada
     const adminPass = "admin123";
 
     // Flags CTF
     const FLAG_1 = "FLAG{xss_almacenado_pwned}";
-    const FLAG_2_B64 = "RkxBR3tsb2NhbHN0b3JhZ2VfZXNfcHVibGljb30="; // FLAG{localstorage_es_publico}
+    const FLAG_2_B64 = "RkxBR3tsb2NhbHN0b3JhZ2VfZXNfcHVibGljb30=";
     const FLAG_3 = "FLAG{idor_sesiones_expuestas}";
 
-    // [V4] Prototype Pollution Vulnerable
+    // Prototype Pollution
     try {
       const urlParams = new URLSearchParams(window.location.search);
       urlParams.forEach((val, key) => {
@@ -545,11 +374,9 @@
       });
     } catch(e) {}
 
-    // [V6] Exponer la base de datos y contraseña globalmente
     window.adminPass = adminPass; 
     window.FLAG_2 = atob(FLAG_2_B64);
 
-    // Elementos
     const cardMain = document.getElementById('card-main');
     const cardPhone = document.getElementById('card-phone');
     const cardEmail = document.getElementById('card-email');
@@ -564,14 +391,14 @@
     const backEmail = document.getElementById('back-email');
     const cancelCode = document.getElementById('cancel-code');
 
-    const formPhone = document.getElementById('form-phone');
     const inputPhone = document.getElementById('input-phone');
+    const btnSubmitPhone = document.getElementById('btn-submit-phone');
 
-    const formEmail = document.getElementById('form-email');
     const inputEmail = document.getElementById('input-email');
+    const btnSubmitEmail = document.getElementById('btn-submit-email');
 
-    const formCode = document.getElementById('form-code');
     const inputCode = document.getElementById('input-code');
+    const btnSubmitCode = document.getElementById('btn-submit-code');
     const timerCode = document.getElementById('timer-code');
     const injectedCode = document.getElementById('injected-code');
 
@@ -590,16 +417,13 @@
     const exportCsvBtn = document.getElementById('export-csv-btn');
     const sessionCountDiv = document.getElementById('admin-session-count');
 
-    // Variables
     let currentSession = null;
     let codeExpireCount = null;
     let connectTimer = null;
 
-    // Funciones
     function showCard(card) {
       [cardMain, cardPhone, cardEmail, cardCode, cardConnect].forEach(c => c.style.display='none');
       card.style.display = 'block';
-      // Ocultar el hero cuando estamos en pasos secundarios
       if (card === cardMain) {
         heroSection.style.display = 'flex';
       } else {
@@ -676,56 +500,45 @@
       },1000);
     }
 
-    // Botones de navegación
     btnPhone.addEventListener('click', () => showCard(cardPhone));
     btnEmail.addEventListener('click', () => showCard(cardEmail));
     backPhone.addEventListener('click', resetToMain);
     backEmail.addEventListener('click', resetToMain);
     cancelCode.addEventListener('click', resetToMain);
 
-    // Formularios
-    formPhone.addEventListener('submit', e => {
-      e.preventDefault();
+    // Cambiado a eventListener de botón para quitar la validación de formularios
+    btnSubmitPhone.addEventListener('click', () => {
       const phoneVal = inputPhone.value.trim();
       if(phoneVal.length < 7){
-        alert('Número telefónico inválido');
+        alert('Número telefónico inválido (mínimo 7 caracteres)');
         return;
       }
       currentSession = {
-        id: generateId(),
-        method: 'phone',
-        identifier: phoneVal,
-        verified: false,
-        expired: false,
-        createdAt: new Date().toISOString()
+        id: generateId(), method: 'phone', identifier: phoneVal,
+        verified: false, expired: false, createdAt: new Date().toISOString()
       };
       saveSession(currentSession);
       showCard(cardCode);
       startCodeTimer();
     });
 
-    formEmail.addEventListener('submit', e => {
-      e.preventDefault();
+    // Cambiado a eventListener de botón para quitar la validación de formularios
+    btnSubmitEmail.addEventListener('click', () => {
       const emailVal = inputEmail.value.trim();
       if(!emailVal.includes('@')){
-        alert('Correo inválido');
+        alert('Correo inválido (debe contener @)');
         return;
       }
       currentSession = {
-        id: generateId(),
-        method: 'email',
-        identifier: emailVal,
-        verified: false,
-        expired: false,
-        createdAt: new Date().toISOString()
+        id: generateId(), method: 'email', identifier: emailVal,
+        verified: false, expired: false, createdAt: new Date().toISOString()
       };
       saveSession(currentSession);
       showCard(cardCode);
       startCodeTimer();
     });
 
-    formCode.addEventListener('submit', e => {
-      e.preventDefault();
+    btnSubmitCode.addEventListener('click', () => {
       if(!currentSession){
         alert('Sesión inválida. Reinicia el acceso.');
         resetToMain();
@@ -741,11 +554,9 @@
       saveSession(currentSession);
       clearInterval(codeExpireCount);
 
-      // [V1] Inyectamos el código sin sanitizar (XSS reflejado/almacenado temporal)
       injectedCode.style.display = 'block';
       injectedCode.innerHTML = codeVal; 
       
-      // Si el código es "flag", muestra la Flag 1
       if (codeVal.toLowerCase() === 'flag') {
         injectedCode.innerHTML = `<strong>¡Felicidades! Aquí tienes la Flag 1: ${FLAG_1}</strong>`;
       }
@@ -754,7 +565,6 @@
       startConnectTimer();
     });
 
-    // Panel admin modal
     btnAdmin.addEventListener('click', () => {
       adminPasswordInput.value = '';
       adminLoginSection.style.display = 'block';
@@ -788,7 +598,8 @@
       adminTableBody.innerHTML = '';
       sesiones.forEach(s => {
         const tr = document.createElement('tr');
-        // [V1] XSS Almacenado: no se usa escapeHtml(s.identifier) aquí a propósito
+        
+        // [V1] XSS Almacenado: Imprimimos los valores crudos
         tr.innerHTML = `
           <td>${s.id}</td>
           <td>${s.method}</td>
@@ -830,7 +641,6 @@
       if(e.target === modalAdmin) modalAdmin.classList.remove('active');
     });
 
-    // Inicializar vista
     showCard(cardMain);
   })();
 </script>
