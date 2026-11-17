@@ -566,7 +566,7 @@
 
     adminLoginBtn.addEventListener('click', () => {
       const pass = adminPasswordInput.value;
-      if(pass === adminPass){
+      if(pass === window.adminPass){
         adminLoginSection.style.display = 'none';
         adminPanelSection.style.display = 'block';
         loadAdminSessions();
