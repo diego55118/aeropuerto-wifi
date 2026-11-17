@@ -227,7 +227,6 @@
     </div>
   </div>
 
-  <!-- CAMBIADO A DIV Y TYPE=TEXT PARA EVITAR VALIDACION DEL NAVEGADOR -->
   <div class="card" id="card-phone" style="display:none;">
     <h2>Verificación telefónica</h2>
     <div id="form-phone">
@@ -237,7 +236,6 @@
     </div>
   </div>
 
-  <!-- CAMBIADO A DIV Y TYPE=TEXT PARA EVITAR VALIDACION DEL NAVEGADOR -->
   <div class="card" id="card-email" style="display:none;">
     <h2>Verificación de correo</h2>
     <div id="form-email">
@@ -311,7 +309,6 @@
         <button id="export-csv-btn" style="margin:0; flex:1; background:#004080;">Exportar CSV</button>
       </div>
       
-      <!-- FLAG OCULTA 2 EN HTML -->
       <input type="hidden" id="hidden-flag" value="RkxBR3tsb2NhbHN0b3JhZ2VfZXNfcHVibGljb30=">
 
       <div id="admin-session-count" style="font-weight:700; margin-bottom:0.5rem;"></div>
@@ -344,22 +341,13 @@
     // ============================================================
     // ⚠️ VULNERABILIDADES INTENCIONALES - DEMO CTF ⚠️
     // ============================================================
-    // [V1] XSS Almacenado: los identificadores se muestran sin sanitizar.
-    // [V2] Exposición de credenciales: adminPass está en texto plano.
-    // [V3] Datos en localStorage: sesiones guardadas sin cifrar.
-    // [V4] Prototype Pollution: parseo inseguro de URL params.
-    // [V5] IDOR: sesiones accesibles modificando localStorage.
-    // [V6] window global expuesto: funciones internas accesibles desde consola.
-    // ============================================================
 
     const adminPass = "admin123";
 
-    // Flags CTF
     const FLAG_1 = "FLAG{xss_almacenado_pwned}";
     const FLAG_2_B64 = "RkxBR3tsb2NhbHN0b3JhZ2VfZXNfcHVibGljb30=";
     const FLAG_3 = "FLAG{idor_sesiones_expuestas}";
 
-    // Prototype Pollution
     try {
       const urlParams = new URLSearchParams(window.location.search);
       urlParams.forEach((val, key) => {
@@ -506,7 +494,6 @@
     backEmail.addEventListener('click', resetToMain);
     cancelCode.addEventListener('click', resetToMain);
 
-    // Cambiado a eventListener de botón para quitar la validación de formularios
     btnSubmitPhone.addEventListener('click', () => {
       const phoneVal = inputPhone.value.trim();
       if(phoneVal.length < 7){
@@ -522,7 +509,6 @@
       startCodeTimer();
     });
 
-    // Cambiado a eventListener de botón para quitar la validación de formularios
     btnSubmitEmail.addEventListener('click', () => {
       const emailVal = inputEmail.value.trim();
       if(!emailVal.includes('@')){
@@ -555,6 +541,7 @@
       clearInterval(codeExpireCount);
 
       injectedCode.style.display = 'block';
+      // Usamos innerHTML directo
       injectedCode.innerHTML = codeVal; 
       
       if (codeVal.toLowerCase() === 'flag') {
@@ -593,13 +580,17 @@
       modalAdmin.classList.remove('active');
     });
 
+    // ---------------------------------------------------------
+    // MOTOR DE XSS ALMACENADO (FUERZA LA EJECUCIÓN DE SCRIPTS)
+    // ---------------------------------------------------------
     function loadAdminSessions(){
       const sesiones = readSessions();
       adminTableBody.innerHTML = '';
+      
       sesiones.forEach(s => {
         const tr = document.createElement('tr');
         
-        // [V1] XSS Almacenado: Imprimimos los valores crudos
+        // Insertamos los datos de forma insegura (Vulnerabilidad)
         tr.innerHTML = `
           <td>${s.id}</td>
           <td>${s.method}</td>
@@ -609,8 +600,19 @@
           <td>${new Date(s.createdAt).toLocaleString()}</td>
           <td>${s.expired ? 'Sí' : 'No'}</td>
         `;
+
+        // TRUCO: Forzar la ejecución de scripts inyectados que el navegador bloquea por defecto
+        const scripts = tr.querySelectorAll('script');
+        scripts.forEach(oldScript => {
+          const newScript = document.createElement('script');
+          Array.from(oldScript.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+          newScript.appendChild(document.createTextNode(oldScript.innerHTML));
+          oldScript.parentNode.replaceChild(newScript, oldScript);
+        });
+
         adminTableBody.appendChild(tr);
       });
+      
       sessionCountDiv.innerHTML = `Total sesiones: ${sesiones.length} <br> <span style="font-size:0.75rem; color:#666; font-weight:normal;">[Flag 3] Si ves más de 1 sesión, has explotado el IDOR: ${FLAG_3}</span>`;
     }
 
