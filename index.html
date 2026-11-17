@@ -3,641 +3,651 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AEROPUERTO MÉXICO - WiFi Gratis</title>
+<title>AEROPUERTO MÉXICO - Portal WiFi (Simulación Educativa CTF)</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+  * { box-sizing: border-box; }
   body, html {
-    margin:0; padding:0; height:100%;
+    margin: 0; padding: 0; min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(135deg, #004080 0%, #a3c2ff 100%);
+    background: #f0f4fa;
     color: #003366;
-    display:flex;
-    flex-direction: column; 
-    min-height: 100vh;
+    display: flex; flex-direction: column;
   }
+  /* ================== HEADER ================== */
   header {
-    background:#001f3f;
-    color:white;
-    text-align:center;
-    padding: 1rem 1rem 1.5rem;
-    position: relative;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  }
-  header .logo {
-    font-size: 3.5rem;
-    margin-bottom: 0.3rem;
-    user-select:none;
-  }
-  header h1 {
-    margin:0 0 0.25rem 0;
-    font-weight: 700;
-    letter-spacing: 3px;
-    font-size: 2rem;
-  }
-  header .wifi-info {
-    font-weight: 600;
-    font-size: 1.1rem;
-    letter-spacing: 1.5px;
-  }
-  header .simulacion {
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    font-size: 0.85rem;
-    background: #003366cc;
-    padding: 4px 8px;
-    border-radius: 8px;
-    font-weight: 700;
-    user-select:none;
-  }
-  main {
-    flex:1;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-  }
-  .card {
-    background: white;
-    border-radius: 15px;
-    padding: 2.5rem 2rem;
-    box-shadow: 0 8px 20px #001f3faa;
-    max-width: 420px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-  }
-  h2 {
-    margin-top:0;
-    margin-bottom:1.2rem;
-    color: #002244;
-    font-size: 1.9rem;
-  }
-  .btn-group {
-    display:flex;
-    justify-content:center;
-    gap: 1.25rem;
-    margin-bottom: 1.5rem;
-  }
-  button {
-    background-color: #003366;
-    border: none;
+    background: linear-gradient(120deg, #002244 0%, #004080 60%, #0066cc 100%);
     color: white;
-    padding: 0.85rem 1.5rem;
-    font-weight: 700;
-    border-radius: 8px;
-    cursor: pointer;
-    flex:1;
-    font-size: 1.1rem;
-    transition: background-color 0.25s ease;
-    user-select:none;
+    padding: 1rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    flex-wrap: wrap;
+    gap: 1rem;
   }
-  button:hover {
-    background-color: #0056b3;
+  .header-brand { display: flex; align-items: center; gap: 1rem; }
+  .header-brand .logo {
+    font-size: 2.6rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    width: 64px; height: 64px;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px solid rgba(255,255,255,0.25);
   }
-  button.light {
-    background-color: #A3C2FF;
-    color: #003366;
+  .header-brand h1 {
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: 3px;
+    font-size: 1.5rem;
   }
-  button.light:hover {
-    background-color: #7aaaff;
+  .header-brand .sub {
+    font-size: 0.75rem; opacity: 0.85; letter-spacing: 4px;
+    text-transform: uppercase; margin-top: 2px;
   }
-  input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1.25rem;
-    font-size: 1.1rem;
-    border: 2px solid #003366;
-    border-radius: 8px;
-    box-sizing: border-box;
-    transition: border-color 0.3s;
+  .header-nav { display: flex; gap: 1.5rem; font-size: 0.85rem; }
+  .header-nav a {
+    color: #cce0ff; text-decoration: none; font-weight: 600;
+    letter-spacing: 1px; transition: color 0.2s;
   }
-  input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="password"]:focus {
-    border-color: #0066ff;
-    outline: none;
-    box-shadow: 0 0 6px #66aaff;
+  .header-nav a:hover { color: #fff; }
+  .simulacion {
+    position: absolute; top: 8px; right: 12px;
+    font-size: 0.65rem; background: #ff6b00; padding: 4px 10px;
+    border-radius: 12px; font-weight: 700; letter-spacing: 1px;
+    box-shadow: 0 2px 6px rgba(255,107,0,0.4);
   }
-  .timer {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #004080;
+  /* ================== HERO + MAIN ================== */
+  main { flex: 1; padding: 2.5rem 1rem; width: 100%; }
+  .hero {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    align-items: center;
+  }
+  .hero-text h2 {
+    font-size: 2.2rem;
+    margin: 0 0 1rem;
+    color: #002244;
+    line-height: 1.2;
+    font-weight: 800;
+  }
+  .hero-text p {
+    color: #4a5a70; font-size: 1.05rem; line-height: 1.6;
     margin-bottom: 1.5rem;
-    user-select:none;
   }
-  .progress-bar-container {
-    background: #a3c2ff;
-    border-radius: 12px;
-    width: 100%;
-    height: 24px;
-    margin: 1.5rem 0 1rem;
+  .hero-features {
+    display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem;
+  }
+  .hero-features .feat {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.9rem; color: #003366; font-weight: 600;
+  }
+  .hero-features .feat span { font-size: 1.4rem; }
+  .hero-image {
+    background: linear-gradient(135deg, #0066cc, #00b4d8);
+    border-radius: 20px;
+    min-height: 340px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
     overflow: hidden;
-    box-shadow: inset 0 0 8px #001f3faa;
+    box-shadow: 0 20px 40px rgba(0,102,204,0.3);
+  }
+  .hero-image::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15), transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1), transparent 40%);
+  }
+  .hero-image .plane {
+    font-size: 6rem;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.3));
+    animation: float 3s ease-in-out infinite;
+    z-index: 1;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-15px) rotate(-5deg); }
+  }
+  .hero-image .tagline {
+    position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+    color: rgba(255,255,255,0.9); font-size: 0.8rem; letter-spacing: 2px;
+    text-align: center; font-weight: 600; text-transform: uppercase;
+  }
+  /* ================== TARJETAS ================== */
+  .card {
+    background: white; border-radius: 16px; padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0,51,102,0.12);
+    max-width: 520px; margin: 0 auto 2rem;
+    text-align: center;
+    border-top: 5px solid #0066cc;
+    transition: transform 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card h2 { margin: 0 0 0.5rem; color: #002244; font-size: 1.6rem; font-weight: 800; }
+  .card .subtitle { color: #6b7a92; font-size: 0.9rem; margin-bottom: 2rem; }
+  .btn {
+    display: block; width: 100%; padding: 1rem 1.2rem; margin: 0.7rem 0;
+    background: linear-gradient(135deg, #002244, #003366);
+    color: white; border: none; border-radius: 10px;
+    font-family: inherit; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0,34,68,0.2);
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,34,68,0.3); }
+  .btn:active { transform: scale(0.98); }
+  .btn-light {
+    background: linear-gradient(135deg, #a3c2ff, #cfe0ff);
+    color: #002244;
+  }
+  .btn-light:hover { background: linear-gradient(135deg, #88aaff, #b8d0ff); }
+  .btn-secondary { background: linear-gradient(135deg, #004080, #0059b3); }
+  .btn-danger { background: linear-gradient(135deg, #b00020, #d32f2f); }
+  .input {
+    width: 100%; padding: 1rem 1.2rem; margin: 0.5rem 0 1.2rem;
+    border: 2px solid #d0dbe8; border-radius: 10px;
+    font-size: 1rem; font-family: inherit;
+    background: #f9fbff;
+    transition: border-color 0.2s;
+  }
+  .input:focus { outline: none; border-color: #0066cc; background: white; }
+  .timer {
+    font-weight: 700; color: #b00020; margin: 1.2rem 0;
+    font-size: 1.15rem;
+    background: #fff5f5; padding: 0.8rem; border-radius: 8px;
+    border: 1px solid #ffd0d0;
+  }
+  .progress-wrapper {
+    width: 100%; height: 24px; background: #e6f0ff;
+    border-radius: 12px; overflow: hidden; margin: 1.8rem 0;
+    border: 1px solid #cce0ff;
   }
   .progress-bar {
-    height: 100%;
-    background: #003366;
-    width: 0%;
-    transition: width 1s linear;
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, #0066cc, #00b4d8, #0066cc);
+    background-size: 200% 100%;
+    transition: width 0.3s ease;
+    animation: shimmer 2s linear infinite;
   }
-  footer {
-    background:#001f3f;
-    color:white;
-    font-size:0.85rem;
-    text-align:center;
-    padding:0.75rem 1rem;
-    user-select:none;
+  @keyframes shimmer {
+    0% { background-position: 0% 0; }
+    100% { background-position: 200% 0; }
   }
-  .social-icons {
-    margin-top: 0.3rem;
+  .icon-big { font-size: 4.5rem; margin-bottom: 1rem; }
+  /* ================== PANEL ADMIN ================== */
+  .admin-panel { max-width: 1200px; margin: 0 auto; text-align: left; }
+  .metrics {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem; margin: 1.5rem 0;
   }
-  .social-icons span {
-    margin: 0 0.5rem;
-    cursor: pointer;
-    font-size: 1.7rem;
-    color: #a3c2ff;
-    user-select:none;
+  .metric {
+    background: linear-gradient(135deg, #f0f6ff, #e6f0ff);
+    padding: 1.2rem; border-radius: 12px;
+    border-left: 4px solid #0066cc;
   }
-  /* Responsive */
-  @media (max-width: 480px) {
-    .card {
-      max-width: 95%;
-      padding: 2rem 1.25rem;
-    }
-    h2 {
-      font-size: 1.6rem;
-    }
-    button {
-      font-size: 1rem;
-      padding: 0.7rem 1rem;
-    }
-    input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
-      font-size: 1rem;
-      padding: 0.6rem;
-    }
-  }
-  /* Vulnerable: raw HTML display style */
-  .danger-html {
-    color: #cc0000;
-    border: 2px solid #cc0000;
-    padding: 0.75rem;
-    margin: 0.75rem 0 0 0;
-    background: #ffe6e6;
-    font-family: monospace;
-    text-align: left;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
-    user-select:none;
-  }
-  /* Modal admin */
-  .modal {
-    display: none;
-    position: fixed; top: 0; left: 0; right:0; bottom:0;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  .modal.active {
-    display:flex;
-  }
-  .modal-content {
-    background: white;
-    border-radius: 16px;
-    padding: 2rem 2.5rem;
-    max-width: 520px;
-    width: 90%;
-    box-sizing: border-box;
-    box-shadow: 0 0 25px #003366aa;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 1.2rem;
-    font-size: 1rem;
-    color: #003366;
-    user-select:none;
-  }
-  th, td {
-    border: 1.5px solid #004080;
-    padding: 0.5rem;
-    text-align: left;
-  }
+  .metric .val { font-size: 2rem; font-weight: 800; color: #002244; }
+  .metric .lbl { font-size: 0.75rem; color: #557; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.85rem; }
+  th, td { padding: 0.7rem; border: 1px solid #d0dbe8; text-align: left; vertical-align: top; }
   th {
-    background: #003366;
-    color: white;
+    background: #002244; color: white; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase; font-size: 0.75rem;
   }
-  .btn-close {
-    background: #cc2200;
-    color: white;
-    border:none;
-    padding: 0.6rem 1.2rem;
-    cursor: pointer;
-    border-radius: 8px;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    transition: background-color 0.3s;
+  tr:nth-child(even) { background: #f9fbff; }
+  tr:hover { background: #eef4ff; }
+  .hidden { display: none !important; }
+  /* ================== FOOTER ================== */
+  footer {
+    background: #002244; color: #a3c2ff; padding: 2rem 1rem; text-align: center;
+    font-size: 0.85rem;
   }
-  .btn-close:hover {
-    background: #aa0011;
+  footer .footer-grid {
+    max-width: 1200px; margin: 0 auto 1.5rem;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem; text-align: left;
   }
-  .btn-admin {
-    box-shadow: 0 3px 6px #00000088;
+  footer h4 { color: white; margin: 0 0 0.8rem; font-size: 0.9rem; letter-spacing: 1px; }
+  footer ul { list-style: none; padding: 0; margin: 0; }
+  footer ul li { margin: 0.4rem 0; }
+  footer ul a { color: #a3c2ff; text-decoration: none; font-size: 0.85rem; }
+  footer ul a:hover { color: white; }
+  footer .social a {
+    color: #a3c2ff; margin: 0 0.4rem; font-size: 1.4rem;
+    text-decoration: none; display: inline-block;
+    transition: transform 0.2s;
+  }
+  footer .social a:hover { transform: scale(1.2); color: white; }
+  footer .footer-badge {
+    display: inline-block; margin-top: 1rem; color: #ff6b00;
+    font-weight: 700; font-size: 0.75rem;
+    padding: 4px 12px; border: 1px solid #ff6b00; border-radius: 12px;
+  }
+  /* ================== WARN ================== */
+  .warn-box {
+    background: #fff8e1; border: 1px solid #ffc107; border-radius: 10px;
+    padding: 1rem; margin: 1rem 0; font-size: 0.85rem; text-align: left;
+    line-height: 1.5;
+  }
+  .warn-box code {
+    background: #ffecb3; padding: 2px 6px; border-radius: 4px;
+    font-size: 0.8rem;
+  }
+  /* ================== ADMIN BTN + MODAL ================== */
+  .admin-btn {
+    position: fixed; bottom: 1.5rem; right: 1.5rem;
+    background: linear-gradient(135deg, #002244, #0066cc); color: white;
+    border: none; border-radius: 50%;
+    width: 60px; height: 60px; font-size: 1.5rem; cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,34,68,0.4);
+    z-index: 100;
+    transition: transform 0.2s;
+  }
+  .admin-btn:hover { transform: scale(1.1) rotate(15deg); }
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,20,40,0.75);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 200; padding: 1rem;
+    backdrop-filter: blur(4px);
+  }
+  /* ================== RESPONSIVE ================== */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-text h2 { font-size: 1.7rem; }
+    .hero-image { min-height: 220px; }
+    .hero-image .plane { font-size: 4rem; }
+    .header-nav { display: none; }
+  }
+  @media (max-width: 600px) {
+    header { padding: 0.8rem 1rem; }
+    .header-brand h1 { font-size: 1.1rem; letter-spacing: 2px; }
+    .header-brand .logo { width: 48px; height: 48px; font-size: 2rem; }
+    .card { padding: 1.8rem 1.2rem; }
+    .hero-text h2 { font-size: 1.4rem; }
+    .hero-features { gap: 1rem; }
+    .metric .val { font-size: 1.5rem; }
+    .simulacion { font-size: 0.55rem; padding: 3px 8px; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">✈️</div>
-  <h1>AEROPUERTO MÉXICO</h1>
-  <div class="wifi-info">WiFi Gratis - ¡Conéctate ya!</div>
-  <div class="simulacion" title="Propósito educativo"></div>
+  <div class="simulacion">SIMULACIÓN EDUCATIVA</div>
+  <div class="header-brand">
+    <div class="logo">✈️</div>
+    <div>
+      <h1>AEROPUERTO MÉXICO</h1>
+      <div class="sub">Portal Digital · WiFi · Demo CTF</div>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <a href="#">Vuelos</a>
+    <a href="#">Pasajeros</a>
+    <a href="#">Servicios</a>
+    <a href="#">WiFi</a>
+  </nav>
 </header>
 
-<main>
-  <div class="card" id="card-main">
-    <h2>Acceso a Internet</h2>
-    <div class="btn-group">
-      <button id="btn-phone" class="btn-admin">Acceder con código</button>
-      <button id="btn-email" class="light btn-admin">Acceder con correo electrónico</button>
-    </div>
-  </div>
-  <div class="card" id="card-phone" style="display:none;">
-    <h2>Verificación telefónica</h2>
-    <form id="form-phone" autocomplete="off">
-      <input type="tel" id="input-phone" placeholder="Ingresa tu número de teléfono" required />
-      <button type="submit" class="btn-admin">Continuar</button>
-      <button type="button" id="back-phone" class="light btn-admin">Regresar</button>
-    </form>
-  </div>
-  <div class="card" id="card-email" style="display:none;">
-    <h2>Verificación de correo electrónico</h2>
-    <form id="form-email" autocomplete="off">
-      <input type="email" id="input-email" placeholder="Ingresa tu correo electrónico" required />
-      <button type="submit" class="btn-admin">Continuar</button>
-      <button type="button" id="back-email" class="light btn-admin">Regresar</button>
-    </form>
-  </div>
-  <div class="card" id="card-code" style="display:none;">
-    <h2>Confirmación de acceso</h2>
-    <p>Ingresa el código de verificación</p>
-    <form id="form-code" autocomplete="off">
-      <input type="text" id="input-code" maxlength="100" placeholder="Código de 6 dígitos" required />
-      <div class="timer" id="timer-code">El código de prueba caducará en 05:00 minutos.</div>
-      <button type="submit" class="btn-admin">Confirmar código</button>
-      <button type="button" id="cancel-code" class="light btn-admin">Cancelar</button>
-    </form>
-    <div style="margin-top:1rem; color:#800; font-size:0.9rem;">
-      <b>Conexion Segura</b> Conectate sin preocupaciones
-    </div>
-    <div id="injected-code" class="danger-html"></div>
-  </div>
-  <div class="card" id="card-connect" style="display:none; text-align:center;">
-    <div style="font-size:5rem; color:#003366; user-select:none;">🔌</div>
-    <h2>Verificación completada</h2>
-    <p>Estamos preparando tu conexión</p>
-    <div class="progress-bar-container" aria-label="Barra de progreso">
-      <div class="progress-bar" id="progress-bar"></div>
-    </div>
-    <div class="timer" id="timer-connect">Tu conexión estará disponible en unos momentos.</div>
-  </div>
-</main>
+<main id="app"></main>
 
 <footer>
-  <div>© 2026 Aeropuerto México - Portal simulado</div>
-  <div class="social-icons" role="list" title="Redes sociales">
-    <span role="listitem" title="Facebook" onclick="alert('Ir a Facebook')">📘</span>
-    <span role="listitem" title="Instagram" onclick="alert('Ir a Instagram')">📸</span>
-    <span role="listitem" title="X (Twitter)" onclick="alert('Ir a X')">🐦</span>
-    <span role="listitem" title="YouTube" onclick="alert('Ir a YouTube')">▶️</span>
+  <div class="footer-grid">
+    <div>
+      <h4>AEROPUERTO MÉXICO</h4>
+      <p style="font-size:0.8rem; line-height:1.6;">Portal simulado con fines educativos. No representa un servicio aeroportuario real.</p>
+    </div>
+    <div>
+      <h4>Información</h4>
+      <ul>
+        <li><a href="#">Vuelos en tiempo real</a></li>
+        <li><a href="#">Información de pasajeros</a></li>
+        <li><a href="#">Transporte y accesos</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Síguenos</h4>
+      <div class="social">
+        <a href="#" aria-label="Facebook">📘</a>
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="X">🐦</a>
+        <a href="#" aria-label="YouTube">▶️</a>
+      </div>
+    </div>
   </div>
+  <p>© 2026 Aeropuerto México - Portal simulado</p>
+  <span class="footer-badge">⚠️ SIMULACIÓN EDUCATIVA - No es un servicio real</span>
 </footer>
 
-<!-- Botón admin fijo -->
-<button id="btn-admin" class="btn-admin" style="position: fixed; bottom: 1rem; right: 1rem;">Admin</button>
-
-<!-- Modal panel admin -->
-<div id="modal-admin" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-  <div class="modal-content">
-    <h2 id="modal-title">Panel Administrativo</h2>
-    <div id="admin-login-section">
-      <p>Ingresa la contraseña para acceder:</p>
-      <input type="password" id="admin-password" placeholder="Contraseña" autocomplete="off"/>
-      <button id="admin-login-btn" style="margin-top: 0.5rem;">Entrar</button>
-    </div>
-    <div id="admin-panel-section" style="display:none;">
-      <button id="admin-logout-btn" class="btn-close">Cerrar sesión</button>
-      <button id="export-csv-btn" style="background:#004080; color:#fff; border:none; cursor:pointer; padding: 0.5rem 1rem; margin-bottom:1rem; border-radius:8px;">Exportar sesiones a CSV</button>
-      <div id="admin-session-count" style="font-weight:700; margin-bottom:0.5rem;"></div>
-      <table id="admin-table" aria-label="Sesiones ingresadas">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Método</th>
-            <th>Identificador</th>
-            <th>Código</th>
-            <th>Verificado</th>
-            <th>Creado</th>
-            <th>Expirado</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+<button class="admin-btn" onclick="abrirAdmin()" title="Panel Admin">⚙️</button>
 
 <script>
-  (() => {
-    // Elementos
-    const cardMain = document.getElementById('card-main');
-    const cardPhone = document.getElementById('card-phone');
-    const cardEmail = document.getElementById('card-email');
-    const cardCode = document.getElementById('card-code');
-    const cardConnect = document.getElementById('card-connect');
+/* ============================================================
+   ⚠️  VULNERABILIDADES INTENCIONALES - DEMO EDUCATIVA / CTF  ⚠️
+   ============================================================
+   [V1] XSS almacenado: identificador se renderiza sin sanitizar
+   [V2] Datos sensibles en localStorage accesibles
+   [V3] Credenciales admin visibles en localStorage
+   [V4] Contraseña hardcoded (Ctrl+U)
+   [V5] Códigos en texto plano en panel admin
+   [V6] Sin rate limiting en verificación
+   [V7] CSV Injection (identificador se exporta sin sanitizar)
+   [V8] IDOR: sessionId accesible/modificable desde consola
+   [V9] Flag oculta en base64 en el HTML
+   [V10] Prototype Pollution vía URL params
+   [V11] DOM Clobbering en identificadores
+   [V12] window.DB expuesto globalmente
+   ============================================================ */
 
-    const btnPhone = document.getElementById('btn-phone');
-    const btnEmail = document.getElementById('btn-email');
+// [V4] Credenciales hardcodeadas
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'admin123';
 
-    const backPhone = document.getElementById('back-phone');
-    const backEmail = document.getElementById('back-email');
-    const cancelCode = document.getElementById('cancel-code');
+// [V9] FLAG oculta (base64): FLAG{localstorage_es_publico}
+const _hidden = 'RkxBR3tsb2NhbHN0b3JhZ2VfZXNfcHVibGljb30=';
 
-    const formPhone = document.getElementById('form-phone');
-    const inputPhone = document.getElementById('input-phone');
-
-    const formEmail = document.getElementById('form-email');
-    const inputEmail = document.getElementById('input-email');
-
-    const formCode = document.getElementById('form-code');
-    const inputCode = document.getElementById('input-code');
-    const timerCode = document.getElementById('timer-code');
-    const injectedCode = document.getElementById('injected-code');
-
-    const progressBar = document.getElementById('progress-bar');
-    const timerConnect = document.getElementById('timer-connect');
-
-    const btnAdmin = document.getElementById('btn-admin');
-    const modalAdmin = document.getElementById('modal-admin');
-    const adminPasswordInput = document.getElementById('admin-password');
-    const adminLoginBtn = document.getElementById('admin-login-btn');
-    const adminLoginSection = document.getElementById('admin-login-section');
-    const adminPanelSection = document.getElementById('admin-panel-section');
-    const adminTableBody = document.querySelector('#admin-table tbody');
-    const adminLogoutBtn = document.getElementById('admin-logout-btn');
-    const exportCsvBtn = document.getElementById('export-csv-btn');
-    const sessionCountDiv = document.getElementById('admin-session-count');
-
-    // Variables
-    let currentSession = null;
-    let codeExpireCount = null;
-    let connectTimer = null;
-
-    const adminPass = "admin123";
-
-    // Funciones
-    function showCard(card) {
-      [cardMain, cardPhone, cardEmail, cardCode, cardConnect].forEach(c => c.style.display='none');
-      card.style.display = 'block';
-    }
-
-    function resetToMain() {
-      currentSession = null;
-      injectedCode.innerHTML = '';
-      inputCode.value = '';
-      inputEmail.value = '';
-      inputPhone.value = '';
-      showCard(cardMain);
-    }
-
-    function generateId() {
-      return 'sess_' + Math.random().toString(36).substr(2,9);
-    }
-
-    function saveSession(session) {
-      let sesiones = JSON.parse(localStorage.getItem('sesionesAeropuerto')) || [];
-      const idx = sesiones.findIndex(s => s.id === session.id);
-      if (idx !== -1) sesiones[idx] = session;
-      else sesiones.push(session);
-      localStorage.setItem('sesionesAeropuerto', JSON.stringify(sesiones));
-    }
-
-    function readSessions() {
-      return JSON.parse(localStorage.getItem('sesionesAeropuerto')) || [];
-    }
-
-    function startCodeTimer() {
-      let timeLeft = 300;
-      timerCode.textContent = `El código caducará en 05:00 minutos.`;
-      clearInterval(codeExpireCount);
-      codeExpireCount = setInterval(() => {
-        timeLeft--;
-        const m = Math.floor(timeLeft/60).toString().padStart(2,'0');
-        const s = (timeLeft%60).toString().padStart(2,'0');
-        timerCode.textContent = `El código caducará en ${m}:${s} minutos.`;
-        if(timeLeft<=0){
-          clearInterval(codeExpireCount);
-          timerCode.textContent = 'El código ha caducado.';
-          if(currentSession){
-            currentSession.expired = true;
-            saveSession(currentSession);
-            alert('El código de verificación expiró. Debes reiniciar el acceso.');
-            resetToMain();
-          }
+// [V10] Prototype Pollution: parsear params sin sanitizar
+(function protPollution() {
+  try {
+    const params = new URLSearchParams(location.search);
+    params.forEach((v, k) => {
+      if (k.includes('__proto__') || k.includes('constructor')) {
+        const path = k.replace(/\[|\]/g, '.').split('.').filter(Boolean);
+        let obj = window;
+        for (let i = 0; i < path.length - 1; i++) {
+          obj = obj[path[i]] = obj[path[i]] || {};
         }
-      },1000);
-    }
-
-    function startConnectTimer() {
-      let progress = 0;
-      let timeLeft = 120;
-      progressBar.style.width = '0%';
-      timerConnect.textContent = 'Tu conexión estará disponible en unos momentos.';
-      clearInterval(connectTimer);
-      connectTimer = setInterval(() => {
-        progress++;
-        progressBar.style.width = `${progress/120*100}%`;
-        const m = Math.floor(timeLeft/60).toString().padStart(2,'0');
-        const s = (timeLeft%60).toString().padStart(2,'0');
-        timerConnect.textContent = `Tiempo restante: ${m}:${s}`;
-        timeLeft--;
-        if(timeLeft<0){
-          clearInterval(connectTimer);
-          timerConnect.textContent = '¡Conexión completada!\n(No se estableció conexión real)';
-          setTimeout(resetToMain, 3000);
-        }
-      },1000);
-    }
-
-    function showInjectedCode(code) {
-      // Intencionalmente insertamos html sin escapar para XSS
-      injectedCode.innerHTML = code;
-    }
-
-    btnPhone.addEventListener('click', () => showCard(cardPhone));
-    btnEmail.addEventListener('click', () => showCard(cardEmail));
-    backPhone.addEventListener('click', resetToMain);
-    backEmail.addEventListener('click', resetToMain);
-    cancelCode.addEventListener('click', resetToMain);
-
-    formPhone.addEventListener('submit', e => {
-      e.preventDefault();
-      const phoneVal = inputPhone.value.trim();
-      if(phoneVal.length < 7){
-        alert('Número telefónico inválido');
-        return;
-      }
-      currentSession = {
-        id: generateId(),
-        method: 'phone',
-        identifier: phoneVal,
-        verified: false,
-        expired: false,
-        createdAt: new Date().toISOString()
-      };
-      saveSession(currentSession);
-      showCard(cardCode);
-      startCodeTimer();
-    });
-
-    formEmail.addEventListener('submit', e => {
-      e.preventDefault();
-      const emailVal = inputEmail.value.trim();
-      if(!emailVal.includes('@')){
-        alert('Correo inválido');
-        return;
-      }
-      currentSession = {
-        id: generateId(),
-        method: 'email',
-        identifier: emailVal,
-        verified: false,
-        expired: false,
-        createdAt: new Date().toISOString()
-      };
-      saveSession(currentSession);
-      showCard(cardCode);
-      startCodeTimer();
-    });
-
-    formCode.addEventListener('submit', e => {
-      e.preventDefault();
-      if(!currentSession){
-        alert('Sesión inválida. Reinicia el acceso.');
-        resetToMain();
-        return;
-      }
-      const codeVal = inputCode.value.trim();
-      if(codeVal.length === 0){
-        alert('Ingresa un código válido');
-        return;
-      }
-      currentSession.code = codeVal;
-      currentSession.verified = true;
-      saveSession(currentSession);
-      clearInterval(codeExpireCount);
-
-      showInjectedCode(codeVal);
-
-      showCard(cardConnect);
-      startConnectTimer();
-    });
-
-    // Panel admin modal
-    btnAdmin.addEventListener('click', () => {
-      adminPasswordInput.value = '';
-      adminLoginSection.style.display = 'block';
-      adminPanelSection.style.display = 'none';
-      modalAdmin.classList.add('active');
-      adminPasswordInput.focus();
-    });
-
-    adminLoginBtn.addEventListener('click', () => {
-      const pass = adminPasswordInput.value;
-      if(pass === adminPass){
-        adminLoginSection.style.display = 'none';
-        adminPanelSection.style.display = 'block';
-        loadAdminSessions();
-      } else {
-        alert('Contraseña incorrecta.');
-        adminPasswordInput.focus();
+        obj[path[path.length-1]] = v;
       }
     });
+  } catch(e) {}
+})();
 
-    adminLogoutBtn.addEventListener('click', () => {
-      modalAdmin.classList.remove('active');
-    });
+// [V8] IDOR: sessionId guardado en sessionStorage y accesible
+const DB = {
+  KEY_SESSIONS: 'aero_sessions',
+  KEY_ADMIN: 'aero_admin_session',
 
-    function loadAdminSessions(){
-      const sesiones = readSessions();
-      adminTableBody.innerHTML = '';
-      sesiones.forEach(s => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${s.id}</td>
-          <td>${s.method}</td>
-          <td>${escapeHtml(s.identifier)}</td>
-          <td>${escapeHtml(s.code || '')}</td>
-          <td>${s.verified ? 'Sí' : 'No'}</td>
-          <td>${new Date(s.createdAt).toLocaleString()}</td>
-          <td>${s.expired ? 'Sí' : 'No'}</td>
-        `;
-        adminTableBody.appendChild(tr);
-      });
-      sessionCountDiv.textContent = `Total sesiones: ${sesiones.length}`;
+  getSessions() {
+    try { return JSON.parse(localStorage.getItem(this.KEY_SESSIONS)) || []; }
+    catch { return []; }
+  },
+  saveSessions(s) {
+    localStorage.setItem(this.KEY_SESSIONS, JSON.stringify(s));
+    // [V8] también accesible desde sessionStorage para "debug"
+    sessionStorage.setItem('aero_debug_sessions', JSON.stringify(s));
+  },
+  addSession(s) {
+    const all = this.getSessions();
+    // [V11] DOM Clobbering: id basado en identificador del usuario
+    s.id = Date.now() + Math.floor(Math.random()*1000);
+    s.created_at = new Date().toISOString();
+    s.verified = false;
+    s.expired = false;
+    s.verification_code = null;
+    s.verification_time = null;
+    s.finished_time = null;
+    all.unshift(s);
+    this.saveSessions(all);
+    return s;
+  },
+  updateSession(id, patch) {
+    const all = this.getSessions();
+    const i = all.findIndex(x => x.id === id);
+    if (i >= 0) { all[i] = { ...all[i], ...patch }; this.saveSessions(all); return all[i]; }
+    return null;
+  }
+};
+
+// [V12] Exponer la "base de datos" globalmente (para "debug")
+window.DB = DB;
+window.ADMIN_USER = ADMIN_USER;
+window.ADMIN_PASS = ADMIN_PASS;
+
+// Estado de la app
+let state = { step: 'main', method: null, sessionId: null, adminToken: null };
+window.state = state; // [V12]
+
+// [V8] Guardar sessionId también en sessionStorage para IDOR
+function persistSessionId(id) {
+  sessionStorage.setItem('aero_session_id', id);
+}
+
+// ==================== RENDER ====================
+function render() {
+  const app = document.getElementById('app');
+  if (state.adminToken) { app.innerHTML = renderAdminPanel(); return; }
+  switch (state.step) {
+    case 'main': app.innerHTML = renderMain(); break;
+    case 'form': app.innerHTML = renderForm(); break;
+    case 'verify': app.innerHTML = renderVerify(); startVerifyTimer(); break;
+    case 'connection': app.innerHTML = renderConnection(); startConnectionProgress(); break;
+  }
+}
+
+// ==================== PANTALLA PRINCIPAL ====================
+function renderMain() {
+  return `
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Bienvenido al Portal Digital del Aeropuerto México</h2>
+        <p>Conéctate al WiFi gratuito del aeropuerto y accede a todos nuestros servicios digitales: información de vuelos, mapas de terminales y más.</p>
+        <div class="hero-features">
+          <div class="feat"><span>📶</span> WiFi gratuito</div>
+          <div class="feat"><span>⚡</span> Alta velocidad</div>
+          <div class="feat"><span>🔒</span> Conexión segura</div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="plane">✈️</div>
+        <div class="tagline">Terminal 1 · Sala Internacional</div>
+      </div>
+    </section>
+    <div class="card">
+      <h2>Acceso a Internet</h2>
+      <p class="subtitle">Selecciona tu método de acceso al WiFi del aeropuerto</p>
+      <button class="btn" onclick="elegirMetodo('phone')">📱 Acceder con código (SMS)</button>
+      <button class="btn btn-light" onclick="elegirMetodo('email')">✉️ Acceder con correo electrónico</button>
+    </div>
+  `;
+}
+
+function elegirMetodo(m) { state.method = m; state.step = 'form'; render(); }
+
+// ==================== FORMULARIO ====================
+function renderForm() {
+  const esEmail = state.method === 'email';
+  return `
+    <div class="card">
+      <h2>${esEmail ? 'Verificación de correo electrónico' : 'Verificación telefónica'}</h2>
+      <p class="subtitle">Ingresa un dato ficticio para la demostración</p>
+      <input id="ident" class="input" type="${esEmail ? 'email' : 'tel'}"
+             placeholder="${esEmail ? 'correo@ejemplo.com' : '55 1234 5678'}" />
+      <button class="btn" onclick="continuar()">Continuar</button>
+      <button class="btn btn-secondary" onclick="volverInicio()">Regresar</button>
+    </div>
+  `;
+}
+
+function continuar() {
+  const val = document.getElementById('ident').value.trim();
+  if (!val) { alert('Ingresa un valor'); return; }
+  if (state.method === 'email' && !val.includes('@')) { alert('Correo inválido'); return; }
+  if (state.method === 'phone' && val.replace(/\D/g,'').length < 7) { alert('Teléfono inválido'); return; }
+
+  const session = DB.addSession({ method: state.method, identifier: val });
+  state.sessionId = session.id;
+  persistSessionId(session.id); // [V8]
+  state.step = 'verify';
+  render();
+}
+
+function volverInicio() {
+  clearInterval(verifyTimer);
+  state = { step: 'main', method: null, sessionId: null, adminToken: null };
+  render();
+}
+
+// ==================== VERIFICACIÓN ====================
+let verifyTimer = null;
+let verifySeconds = 300;
+
+function renderVerify() {
+  verifySeconds = 300;
+  return `
+    <div class="card">
+      <h2>Confirmación de acceso</h2>
+      <p class="subtitle">Ingresa el código de verificación de prueba (6 dígitos)</p>
+      <input id="code" class="input" type="text" maxlength="6" placeholder="000000"
+             style="text-align:center; font-size:1.6rem; letter-spacing:10px; font-weight:700;" />
+      <div class="timer" id="timer">El código de prueba caducará en 05:00 minutos</div>
+      <button class="btn" onclick="confirmarCodigo()">Confirmar código</button>
+      <button class="btn btn-secondary" onclick="volverInicio()">Cancelar</button>
+      <div class="warn-box" style="margin-top:1.5rem;">
+        🔍 <strong>Reto CTF:</strong> Prueba a modificar <code>state.sessionId</code> desde la consola.
+        ¿Puedes verificar una sesión ajena?
+      </div>
+    </div>
+  `;
+}
+
+function startVerifyTimer() {
+  clearInterval(verifyTimer);
+  verifyTimer = setInterval(() => {
+    verifySeconds--;
+    if (verifySeconds <= 0) {
+      clearInterval(verifyTimer);
+      DB.updateSession(state.sessionId, { expired: true });
+      const t = document.getElementById('timer');
+      if (t) t.textContent = '⏰ El código ha caducado';
+      return;
     }
-
-    exportCsvBtn.addEventListener('click', () => {
-      const sesiones = readSessions();
-      const header = ['ID','Método','Identificador','Código','Verificado','Creado','Expirado'];
-      const rows = sesiones.map(s => [
-        s.id,
-        s.method,
-        s.identifier,
-        s.code || '',
-        s.verified,
-        s.createdAt,
-        s.expired
-      ]);
-      let csv = header.join(',') + '\n';
-      rows.forEach(row => {
-        csv += row.map(escapeCsv).join(',') + '\n';
-      });
-      downloadCSV(csv, 'sesiones_aeropuerto_mexico.csv');
-    });
-
-    function downloadCSV(data, filename) {
-      const blob = new Blob([data], {type: 'text/csv'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      a.click();
-      URL.revokeObjectURL(url);
+    const t = document.getElementById('timer');
+    if (t) {
+      const m = String(Math.floor(verifySeconds/60)).padStart(2,'0');
+      const s = String(verifySeconds%60).padStart(2,'0');
+      t.textContent = `El código de prueba caducará en ${m}:${s} minutos`;
     }
+  }, 1000);
+}
 
-    function escapeCsv(text){
-      if (typeof text !== 'string') return text;
-      return `"${text.replace(/"/g, '""')}"`;
+function confirmarCodigo() {
+  const code = document.getElementById('code').value.trim();
+  if (!/^\d{6}$/.test(code)) { alert('El código debe tener 6 dígitos'); return; }
+
+  const session = DB.getSessions().find(s => s.id === state.sessionId);
+  if (session && session.expired) { alert('El código ha caducado'); return; }
+
+  // [V1][V5] código guardado en claro + sin sanitizar
+  DB.updateSession(state.sessionId, {
+    verified: true,
+    verification_code: code,
+    verification_time: new Date().toISOString()
+  });
+
+  clearInterval(verifyTimer);
+  state.step = 'connection';
+  render();
+}
+
+// ==================== CONEXIÓN ====================
+function renderConnection() {
+  return `
+    <div class="card">
+      <div class="icon-big">🔗</div>
+      <h2>Verificación completada</h2>
+      <p class="subtitle">Estamos preparando tu conexión...</p>
+      <div class="progress-wrapper"><div class="progress-bar" id="prog"></div></div>
+      <div id="prog-text" style="font-weight:700; color:#0066cc; font-size:1.3rem;">0%</div>
+      <p id="countdown" style="color:#6b7a92;">Tu conexión estará disponible en unos momentos</p>
+      <div class="warn-box">
+        ⚠️ <strong>Nota:</strong> Esta es una simulación. No se ha establecido una conexión real a Internet.
+      </div>
+    </div>
+  `;
+}
+
+function startConnectionProgress() {
+  let pct = 0;
+  const step = setInterval(() => {
+    pct += 2;
+    const bar = document.getElementById('prog');
+    const txt = document.getElementById('prog-text');
+    if (bar) bar.style.width = pct + '%';
+    if (txt) txt.textContent = pct + '%';
+    if (pct >= 100) {
+      clearInterval(step);
+      DB.updateSession(state.sessionId, { finished_time: new Date().toISOString() });
+      const c = document.getElementById('countdown');
+      if (c) c.innerHTML = '<strong style="color:#00a000; font-size:1.1rem;">✅ ¡Conexión de demostración completada!</strong><br><small>(No se estableció conexión real)</small>';
+      setTimeout(() => { if (state.step === 'connection') volverInicio(); }, 5000);
     }
+  }, 60);
+}
 
-    function escapeHtml(unsafe) {
-      return unsafe
-         .replace(/&/g, "&amp;")
-         .replace(/</g, "&lt;")
-         .replace(/>/g, "&gt;")
-         .replace(/"/g, "&quot;")
-         .replace(/'/g, "&#039;");
-    }
+// ==================== ADMIN ====================
+function abrirAdmin() {
+  if (document.getElementById('adminModal')) return;
+  const modal = document.createElement('div');
+  modal.className = 'modal-overlay';
+  modal.id = 'adminModal';
+  modal.innerHTML = `
+    <div class="card" style="max-width:380px; margin:0;">
+      <h2>Acceso Admin</h2>
+      <p class="subtitle">Panel de administración del portal</p>
+      <input id="adm_user" class="input" placeholder="Usuario" autocomplete="off" />
+      <input id="adm_pass" class="input" type="password" placeholder="Contraseña" autocomplete="off" />
+      <button class="btn" onclick="loginAdmin()">Ingresar</button>
+      <button class="btn btn-secondary" onclick="cerrarAdmin()">Cerrar</button>
+      <div style="margin-top:1.2rem; font-size:0.7rem; color:#999; padding:8px; background:#f5f9ff; border-radius:6px;">
+        <strong>Demo:</strong> admin / admin123
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
 
-    modalAdmin.addEventListener('click', e => {
-      if(e.target === modalAdmin) modalAdmin.classList.remove('active');
-    });
+function cerrarAdmin() {
+  const m = document.getElementById('adminModal');
+  if (m) m.remove();
+}
 
-    showCard(cardMain);
-  })();
-</script>
+function loginAdmin() {
+  const u = document.getElementById('adm_user').value;
+  const p = document.getElementById('adm_pass').value;
+  // [V3][V4] comparación débil
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
+    const token = 'tok_' + Math.random().toString(36).slice(2);
+    // [V3] guardar credenciales completas en localStorage
+    localStorage.setItem('aero_admin_session', JSON.stringify({ user: u, pass: p, token }));
+    state.adminToken = token;
+    cerrarAdmin();
+    render();
+  } else {
+    alert('Credenciales incorrectas');
+  }
+}
 
-</body>
-</html>
+function logoutAdmin() {
+  localStorage.removeItem('aero_admin_session');
+  state.adminToken = null;
+  render();
+}
+
+function renderAdminPanel() {
+  const sessions = DB.getSessions();
+  const total = sessions.length;
+  const verified = sessions.filter(s => s.verified).length;
+  const expired = sessions.filter(s => s.expired).length;
+  const times = sessions.filter(s => s.verified && s.verification_time)
+    .map(s => new Date(s.verification_time) - new Date(s.created_at));
+  const avg = times.length ? Math.round(times.reduce((a,b)=>a+b,0)/times.length/1000) : 0;
+
+  const rows = sessions.map(s => `
+    <tr>
+      <td>${s.id}</td>
+      <td>${s.method}</td>
+      <td>${s.identifier}</td>
+      <td>${new Date(s.created_at).toLocaleString('
